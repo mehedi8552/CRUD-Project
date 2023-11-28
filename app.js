@@ -15,6 +15,7 @@ const cors = require('cors');
 //database
 
 const mongose = require('mongoose');
+ app.use(express.static('my-client/build'))
 
 //Security middlewaire implement......
 
@@ -32,18 +33,31 @@ app.use(bodyParser.json())
 //rate limiter
 
 const limiter = rateLimit({windowMs:15*60*100,max:3000} );
+app.use(limiter);
 
 //Database...
 
-//Manageing frondEnd  Routing
+let URL = "mongodb+srv://user8552:user8552@cluster0.derptwk.mongodb.net/CRUD"
+//let option = {username :"user8552",password:"user8552",autoIndex:true}
 
-app.use(express.static('my-client/build'))
-app.get("*",(req,res)=>{
-    req.sendFile(path.resolve(__dirname,'my-client','build','index.html'))
-})
+mongose.connect(URL)
+.then(success => console.log("server is connected"))
+.catch(err => console.log(err))
 
 
 //Manageing Backend API Routing
 app.use('/api/v1',router)
+
+
+app.get("/",(req,res)=>{
+res.send("this is home.")
+})
+
+//Manageing frondEnd  Routing
+
+// app.get("*",(req,res)=>{
+//     req.sendFile(path.resolve(__dirname,'my-client','build','index.html'))
+// })
+
 
 module.exports = app;

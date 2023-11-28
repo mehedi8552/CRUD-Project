@@ -1,17 +1,16 @@
-const mongose = require('mongoose');
-const DataSchema= mongose.Schema({
-
+const mongoose= require('mongoose');
+const DataSchema=mongoose.Schema(
+    {
     ProductName:{type:String},
     ProductCode:{type:String},
-    ProductImg:{type:String},
-    ProductPrice:{type:String},
-    ProductQnt:{type:String},
+    Img:{type:String},
+    UnitPrice:{type:String},
+    Qty:{type:String},
     TotalPrice:{type:String},
-    CreateDate:{type:Date,default:Date.now()},
-    
-},
-{versionKey:false}
+    //CreatedDate:{type:Date,default:Date.now()}
+    },
+    {versionKey:false}
 );
 
-const ProductModel=mongose.model('products',DataSchema);
-module.exports= ProductModel;
+const ProductsModel = mongoose.model('playlists',DataSchema);
+module.exports=ProductsModel;

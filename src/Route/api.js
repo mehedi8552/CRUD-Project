@@ -1,8 +1,26 @@
-const express = require("express");
-const router = express.Router();
+const express =require('express');
+const ProductsController=require("../Controller/ProductController")
+const router =express.Router();
 
 
-//API Routing end here...
+// C=Create
+router.post("/CreateProduct",ProductsController.CreateProduct);
 
-module.exports= router ;
+
+// R=Read
+router.get("/ReadProduct",ProductsController.ReadProduct);
+//router.get("/ReadProductByID/:id",ProductsController.ReadProductByID);
+
+
+
+// U=Update
+router.post("/UpdateProduct/:id",ProductsController.UpdateProduct);
+
+
+// Delete
+router.get("/DeleteProduct/:id",ProductsController.DeleteProduct);
+
+
+
+module.exports=router;
 

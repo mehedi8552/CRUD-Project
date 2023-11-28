@@ -1,12 +1,5 @@
-const app = require('./app');
+const app = require("./app");
+
 app.listen(5000,()=>{
-  console.log("application start....")
+  console.log("connect success")
 })
-
-
-
-
-
-
-
-
